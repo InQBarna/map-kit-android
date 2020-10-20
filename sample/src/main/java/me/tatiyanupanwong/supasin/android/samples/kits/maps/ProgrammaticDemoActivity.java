@@ -50,6 +50,7 @@ public class ProgrammaticDemoActivity extends AppCompatActivity implements
             // To programmatically add the map, we first create a MapFragment.
             MapOptions options = MapKit.newMapOptions();
             options.mapToolbarEnabled(true);
+            options.rotateGesturesEnabled(false);
             mapFragment = MapFragment.newInstance(options);
 
             // Then we add it using a FragmentTransaction.

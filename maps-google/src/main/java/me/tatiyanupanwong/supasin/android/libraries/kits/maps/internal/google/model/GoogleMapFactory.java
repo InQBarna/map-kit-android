@@ -230,7 +230,7 @@ class GoogleMapFactory implements MapFactory {
     @NonNull
     @Override
     public MapOptions newMapOptions() {
-        return new GoogleMapOptionsDelegate();
+        return new GoogleMapOptionsWrapper();
     }
 
     /**

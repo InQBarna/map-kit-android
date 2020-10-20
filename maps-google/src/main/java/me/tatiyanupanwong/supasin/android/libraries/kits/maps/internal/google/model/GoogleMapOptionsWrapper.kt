@@ -7,7 +7,7 @@ import me.tatiyanupanwong.supasin.android.libraries.kits.maps.model.LatLngBounds
 import me.tatiyanupanwong.supasin.android.libraries.kits.maps.model.MapOptions
 
 @Parcelize
-class GoogleMapOptionsDelegate(val mDelegate: GoogleMapOptions = GoogleMapOptions()) : MapOptions {
+class GoogleMapOptionsWrapper(val mDelegate: GoogleMapOptions = GoogleMapOptions()) : MapOptions {
 
 
     override fun ambientEnabled(enabled: Boolean): MapOptions {
@@ -119,11 +119,13 @@ class GoogleMapOptionsDelegate(val mDelegate: GoogleMapOptions = GoogleMapOption
     }
 
     override fun rotateGesturesEnabled(enabled: Boolean): MapOptions {
-        TODO("Not yet implemented")
+        mDelegate.rotateGesturesEnabled(enabled)
+        return this
     }
 
     override fun scrollGesturesEnabled(enabled: Boolean): MapOptions {
-        TODO("Not yet implemented")
+        mDelegate.scrollGesturesEnabled(enabled)
+        return this
     }
 
     override fun scrollGesturesEnabledDuringRotateOrZoom(enabled: Boolean): MapOptions {
@@ -143,10 +145,12 @@ class GoogleMapOptionsDelegate(val mDelegate: GoogleMapOptions = GoogleMapOption
     }
 
     override fun zoomControlsEnabled(enabled: Boolean): MapOptions {
-        TODO("Not yet implemented")
+        mDelegate.zoomControlsEnabled(enabled)
+        return this
     }
 
     override fun zoomGesturesEnabled(enabled: Boolean): MapOptions {
-        TODO("Not yet implemented")
+        mDelegate.zoomGesturesEnabled(enabled)
+        return this;
     }
 }

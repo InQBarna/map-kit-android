@@ -7,6 +7,6 @@ import me.tatiyanupanwong.supasin.android.libraries.kits.maps.model.MapOptions;
 public class GoogleMapFragmentFactory {
 
     public static Fragment instantiateFragment(MapOptions options) {
-        return SupportMapFragment.newInstance(((GoogleMapOptionsDelegate) options).getMDelegate());
+        return SupportMapFragment.newInstance(((GoogleMapOptionsWrapper) options).getMDelegate());
     }
 }
