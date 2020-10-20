@@ -27,6 +27,7 @@ import me.tatiyanupanwong.supasin.android.libraries.kits.maps.model.LatLng;
 import me.tatiyanupanwong.supasin.android.libraries.kits.maps.model.LatLngBounds;
 import me.tatiyanupanwong.supasin.android.libraries.kits.maps.model.MapClient;
 import me.tatiyanupanwong.supasin.android.libraries.kits.maps.model.MapFactory;
+import me.tatiyanupanwong.supasin.android.libraries.kits.maps.model.MapOptions;
 import me.tatiyanupanwong.supasin.android.libraries.kits.maps.model.Marker;
 import me.tatiyanupanwong.supasin.android.libraries.kits.maps.model.Polygon;
 import me.tatiyanupanwong.supasin.android.libraries.kits.maps.model.Polyline;
@@ -225,6 +226,11 @@ public class HuaweiMapFactory implements MapFactory {
         return new HuaweiVisibleRegion(nearLeft, nearRight, farLeft, farRight, latLngBounds);
     }
 
+    @NonNull
+    @Override
+    public MapOptions newMapOptions() {
+        return null;
+    }
 
     /**
      * @see #getMapAsync(Fragment, MapKit.OnMapReadyCallback)

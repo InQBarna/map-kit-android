@@ -22,8 +22,10 @@ import androidx.annotation.IdRes;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 import me.tatiyanupanwong.supasin.android.libraries.kits.maps.model.MapFactory;
+import me.tatiyanupanwong.supasin.android.libraries.kits.maps.model.MapOptions;
 
 abstract class MapsPlatform {
 
@@ -40,6 +42,8 @@ abstract class MapsPlatform {
 
     @NonNull
     abstract MapFactory getFactory();
+
+    abstract Fragment instantiateFragment(MapOptions options);
 
     @LayoutRes
     abstract int getFragmentLayoutId();
@@ -92,6 +96,11 @@ abstract class MapsPlatform {
         @Override
         MapFactory getFactory() {
             return sFactory;
+        }
+
+        @Override
+        Fragment instantiateFragment(MapOptions options) {
+            return null;
         }
 
         @LayoutRes
@@ -152,6 +161,18 @@ abstract class MapsPlatform {
             return sFactory;
         }
 
+        @Override
+        Fragment instantiateFragment(MapOptions options) {
+            try {
+                return (Fragment) Class
+                        .forName(LIBRARY_PACKAGE_NAME + ".model.GoogleMapFragmentFactory")
+                        .getMethod("instantiateFragment", MapOptions.class)
+                        .invoke(null, options);
+            } catch (Exception ignored) {
+                return null;
+            }
+        }
+
         @LayoutRes
         @Override
         int getFragmentLayoutId() {
@@ -208,6 +229,11 @@ abstract class MapsPlatform {
         @Override
         MapFactory getFactory() {
             return sFactory;
+        }
+
+        @Override
+        Fragment instantiateFragment(MapOptions options) {
+            return null;
         }
 
         @LayoutRes

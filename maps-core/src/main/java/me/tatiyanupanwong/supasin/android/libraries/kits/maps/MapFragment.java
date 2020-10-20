@@ -26,9 +26,11 @@ import androidx.annotation.Nullable;
 import androidx.annotation.UiThread;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import me.tatiyanupanwong.supasin.android.libraries.kits.maps.model.Map;
 import me.tatiyanupanwong.supasin.android.libraries.kits.maps.model.MapClient;
+import me.tatiyanupanwong.supasin.android.libraries.kits.maps.model.MapOptions;
 import me.tatiyanupanwong.supasin.android.libraries.kits.maps.model.Marker;
 
 /**
@@ -59,13 +61,30 @@ public class MapFragment extends Fragment {
         return new MapFragment();
     }
 
+    public static MapFragment newInstance(MapOptions options) {
+        MapFragment fragment = new MapFragment();
+        Bundle var2 = new Bundle();
+        var2.putParcelable("MapOptions", options);
+        fragment.setArguments(var2);
+        return fragment;
+    }
+
     @Nullable
     @Override
     public final View onCreateView(
             @NonNull LayoutInflater inflater,
             @Nullable ViewGroup container,
             @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(MapsPlatform.get().getFragmentLayoutId(), container, false);
+        View view = inflater.inflate(R.layout.fragment_layout, container, false);
+
+        FragmentManager fragMan = getChildFragmentManager();
+        FragmentTransaction fragTransaction = fragMan.beginTransaction();
+
+        MapOptions options = (MapOptions) getArguments().getParcelable("MapOptions");
+        Fragment myFrag = MapsPlatform.get().instantiateFragment(options);
+        fragTransaction.add(R.id.frameLayout, myFrag , "mapfragment");
+        fragTransaction.commitNow();
+        return view;
     }
 
     /**
@@ -133,7 +152,7 @@ public class MapFragment extends Fragment {
     @Deprecated
     private void getMapAsyncInternal(Map.Factory.OnMapReadyCallback callback) {
         Fragment fragment = getChildFragmentManager()
-                .findFragmentById(MapsPlatform.get().getFragmentDelegateId());
+                .findFragmentByTag("mapfragment");
 
         if (fragment == null) {
             throw new NullPointerException();
@@ -147,7 +166,7 @@ public class MapFragment extends Fragment {
      */
     private void getMapAsyncInternal(MapKit.OnMapReadyCallback callback) {
         Fragment fragment = getChildFragmentManager()
-                .findFragmentById(MapsPlatform.get().getFragmentDelegateId());
+                .findFragmentByTag("mapfragment");
 
         if (fragment == null) {
             throw new NullPointerException();

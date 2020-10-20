@@ -26,6 +26,7 @@ import androidx.fragment.app.FragmentTransaction;
 import me.tatiyanupanwong.supasin.android.libraries.kits.maps.MapFragment;
 import me.tatiyanupanwong.supasin.android.libraries.kits.maps.MapKit;
 import me.tatiyanupanwong.supasin.android.libraries.kits.maps.model.MapClient;
+import me.tatiyanupanwong.supasin.android.libraries.kits.maps.model.MapOptions;
 
 /**
  * Demonstrates how to instantiate a MapFragment programmatically and add a marker to it.
@@ -47,7 +48,9 @@ public class ProgrammaticDemoActivity extends AppCompatActivity implements
         // We only create a fragment if it doesn't already exist.
         if (mapFragment == null) {
             // To programmatically add the map, we first create a MapFragment.
-            mapFragment = MapFragment.newInstance();
+            MapOptions options = MapKit.newMapOptions();
+            options.mapToolbarEnabled(true);
+            mapFragment = MapFragment.newInstance(options);
 
             // Then we add it using a FragmentTransaction.
             FragmentTransaction fragmentTransaction =

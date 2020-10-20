@@ -27,6 +27,7 @@ import me.tatiyanupanwong.supasin.android.libraries.kits.maps.model.LatLng;
 import me.tatiyanupanwong.supasin.android.libraries.kits.maps.model.LatLngBounds;
 import me.tatiyanupanwong.supasin.android.libraries.kits.maps.model.MapClient;
 import me.tatiyanupanwong.supasin.android.libraries.kits.maps.model.MapFactory;
+import me.tatiyanupanwong.supasin.android.libraries.kits.maps.model.MapOptions;
 import me.tatiyanupanwong.supasin.android.libraries.kits.maps.model.Marker;
 import me.tatiyanupanwong.supasin.android.libraries.kits.maps.model.Polygon;
 import me.tatiyanupanwong.supasin.android.libraries.kits.maps.model.Polyline;
@@ -226,6 +227,11 @@ class GoogleMapFactory implements MapFactory {
         return new GoogleVisibleRegion(nearLeft, nearRight, farLeft, farRight, latLngBounds);
     }
 
+    @NonNull
+    @Override
+    public MapOptions newMapOptions() {
+        return new GoogleMapOptionsDelegate();
+    }
 
     /**
      * @see #getMapAsync(Fragment, MapKit.OnMapReadyCallback)

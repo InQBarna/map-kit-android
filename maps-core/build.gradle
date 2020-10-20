@@ -1,4 +1,6 @@
 apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion 29
@@ -9,12 +11,18 @@ android {
     }
 }
 
+androidExtensions {
+    features = ["parcelize"]
+}
+
 dependencies {
     api 'androidx.annotation:annotation:1.1.0'
 
     // Assuming that Fragment APIs is very stable and clients will use compatible version
     // Keeping version 1.0.0 to avoid Java 8 requirement and version conflicts
     api 'androidx.fragment:fragment:1.0.0'
+    implementation "androidx.core:core-ktx:+"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
 
 ext {
@@ -27,3 +35,6 @@ ext {
 
 apply from: rootProject.file("gradle/install.gradle")
 apply from: rootProject.file("gradle/bintray.gradle")
+repositories {
+    mavenCentral()
+}

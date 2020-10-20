@@ -1467,6 +1467,9 @@ public interface Map {
                 LatLng farRight,
                 LatLngBounds latLngBounds);
 
+        @NonNull
+        MapOptions newMapOptions();
+
         /**
          * @deprecated It is not intended to be used outside the library group. As of 1.2.0, its
          * usage scope is now restricted.

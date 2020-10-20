@@ -37,6 +37,7 @@ import me.tatiyanupanwong.supasin.android.libraries.kits.maps.model.LatLngBounds
 import me.tatiyanupanwong.supasin.android.libraries.kits.maps.model.Map;
 import me.tatiyanupanwong.supasin.android.libraries.kits.maps.model.MapClient;
 import me.tatiyanupanwong.supasin.android.libraries.kits.maps.model.MapFactory;
+import me.tatiyanupanwong.supasin.android.libraries.kits.maps.model.MapOptions;
 import me.tatiyanupanwong.supasin.android.libraries.kits.maps.model.Marker;
 import me.tatiyanupanwong.supasin.android.libraries.kits.maps.model.Polygon;
 import me.tatiyanupanwong.supasin.android.libraries.kits.maps.model.Polyline;
@@ -307,6 +308,10 @@ public final class MapKit {
             LatLng farRight,
             LatLngBounds latLngBounds) {
         return FACTORY.newVisibleRegion(nearLeft, nearRight, farLeft, farRight, latLngBounds);
+    }
+
+    public static MapOptions newMapOptions(){
+        return FACTORY.newMapOptions();
     }
 
 

@@ -5,6 +5,8 @@ rootProject.allprojects {
 }
 
 apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion 29
@@ -16,10 +18,16 @@ android {
     }
 }
 
+androidExtensions {
+    features = ["parcelize"]
+}
+
 dependencies {
     api project(':maps-core')
 
     implementation 'com.huawei.hms:maps:5.0.0.300'
+    implementation "androidx.core:core-ktx:+"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
 
 tasks.withType(Javadoc).all { enabled = false }
@@ -34,3 +42,6 @@ ext {
 
 apply from: rootProject.file("gradle/install.gradle")
 apply from: rootProject.file("gradle/bintray.gradle")
+repositories {
+    mavenCentral()
+}
