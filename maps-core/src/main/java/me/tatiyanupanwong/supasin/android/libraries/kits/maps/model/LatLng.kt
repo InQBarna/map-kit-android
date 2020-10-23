@@ -13,24 +13,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-package me.tatiyanupanwong.supasin.android.libraries.kits.maps.model;
+package me.tatiyanupanwong.supasin.android.libraries.kits.maps.model
 
 /**
  * An immutable class representing a pair of latitude and longitude coordinates, stored as degrees.
  *
  * @since 1.0.0
  */
-public interface LatLng {
-
+interface LatLng {
     /**
      * Latitude, in degrees. This value is in the range [-90, 90].
      */
-    double getLatitude();
+    val latitude: Double
 
     /**
      * Longitude, in degrees. This value is in the range [-180, 180).
      */
-    double getLongitude();
-
+    val longitude: Double
 }
