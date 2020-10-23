@@ -51,7 +51,7 @@ public class ProgrammaticDemoActivity extends AppCompatActivity implements
             MapOptions options = MapKit.newMapOptions();
             options.mapToolbarEnabled(true);
             options.rotateGesturesEnabled(false);
-            mapFragment = MapFragment.newInstance(options);
+            mapFragment = new MapFragment();
 
             // Then we add it using a FragmentTransaction.
             FragmentTransaction fragmentTransaction =
@@ -59,7 +59,7 @@ public class ProgrammaticDemoActivity extends AppCompatActivity implements
             fragmentTransaction.add(android.R.id.content, mapFragment, MAP_FRAGMENT_TAG);
             fragmentTransaction.commit();
         }
-        mapFragment.getMapAsync(this);
+        //mapFragment.getMapAsync(this);
     }
 
     @Override

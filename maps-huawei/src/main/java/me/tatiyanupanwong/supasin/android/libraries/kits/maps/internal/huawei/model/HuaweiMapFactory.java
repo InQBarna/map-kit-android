@@ -229,7 +229,7 @@ public class HuaweiMapFactory implements MapFactory {
     @NonNull
     @Override
     public MapOptions newMapOptions() {
-        return null;
+        return new HuaweiMapOptionsWrapper();
     }
 
     /**

@@ -1,15 +1,13 @@
-package me.tatiyanupanwong.supasin.android.libraries.kits.maps.internal.google.model
+package me.tatiyanupanwong.supasin.android.libraries.kits.maps.internal.huawei.model
 
-import com.google.android.gms.maps.GoogleMapOptions
+import com.huawei.hms.maps.HuaweiMapOptions
 import kotlinx.android.parcel.Parcelize
-import me.tatiyanupanwong.supasin.android.libraries.kits.maps.MapKit
 import me.tatiyanupanwong.supasin.android.libraries.kits.maps.model.CameraPosition
 import me.tatiyanupanwong.supasin.android.libraries.kits.maps.model.LatLngBounds
 import me.tatiyanupanwong.supasin.android.libraries.kits.maps.model.MapOptions
 
 @Parcelize
-class GoogleMapOptionsWrapper(val mDelegate: GoogleMapOptions = GoogleMapOptions()) : MapOptions {
-
+class HuaweiMapOptionsWrapper (val mDelegate: HuaweiMapOptions = HuaweiMapOptions()): MapOptions {
 
     override fun ambientEnabled(enabled: Boolean): MapOptions {
         mDelegate.ambientEnabled(enabled)
@@ -17,7 +15,7 @@ class GoogleMapOptionsWrapper(val mDelegate: GoogleMapOptions = GoogleMapOptions
     }
 
     override fun camera(camera: CameraPosition?): MapOptions {
-        mDelegate.camera(GoogleCameraPosition.unwrap(camera as GoogleCameraPosition))
+        mDelegate.camera(HuaweiCameraPosition.unwrap(camera as HuaweiCameraPosition))
         return this
     }
 
@@ -31,7 +29,7 @@ class GoogleMapOptionsWrapper(val mDelegate: GoogleMapOptions = GoogleMapOptions
     }
 
     override fun getCamera(): CameraPosition {
-        return GoogleCameraPosition.wrap(mDelegate.camera)
+        return HuaweiCameraPosition.wrap(mDelegate.camera)
     }
 
     override fun getCompassEnabled(): Boolean {
@@ -39,7 +37,7 @@ class GoogleMapOptionsWrapper(val mDelegate: GoogleMapOptions = GoogleMapOptions
     }
 
     override fun getLatLngBoundsForCameraTarget(): LatLngBounds {
-        return GoogleLatLngBounds.wrap(mDelegate.latLngBoundsForCameraTarget)
+        return HuaweiLatLngBounds.wrap(mDelegate.latLngBoundsForCameraTarget)
     }
 
     override fun getLiteMode(): Boolean {
@@ -71,7 +69,7 @@ class GoogleMapOptionsWrapper(val mDelegate: GoogleMapOptions = GoogleMapOptions
     }
 
     override fun getScrollGesturesEnabledDuringRotateOrZoom(): Boolean {
-        return mDelegate.scrollGesturesEnabledDuringRotateOrZoom
+        return false
     }
 
     override fun getTiltGesturesEnabled(): Boolean {
@@ -95,7 +93,7 @@ class GoogleMapOptionsWrapper(val mDelegate: GoogleMapOptions = GoogleMapOptions
     }
 
     override fun latLngBoundsForCameraTarget(llbounds: LatLngBounds): MapOptions {
-        mDelegate.latLngBoundsForCameraTarget(GoogleLatLngBounds.unwrap(llbounds as GoogleLatLngBounds))
+        mDelegate.latLngBoundsForCameraTarget(HuaweiLatLngBounds.unwrap(llbounds as HuaweiLatLngBounds))
         return this
     }
 
@@ -135,7 +133,7 @@ class GoogleMapOptionsWrapper(val mDelegate: GoogleMapOptions = GoogleMapOptions
     }
 
     override fun scrollGesturesEnabledDuringRotateOrZoom(enabled: Boolean): MapOptions {
-        mDelegate.scrollGesturesEnabledDuringRotateOrZoom(enabled)
+        //No-op
         return this
     }
 
