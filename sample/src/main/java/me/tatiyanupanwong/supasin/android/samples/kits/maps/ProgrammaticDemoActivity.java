@@ -48,18 +48,16 @@ public class ProgrammaticDemoActivity extends AppCompatActivity implements
         // We only create a fragment if it doesn't already exist.
         if (mapFragment == null) {
             // To programmatically add the map, we first create a MapFragment.
-            MapOptions options = MapKit.newMapOptions();
-            options.mapToolbarEnabled(true);
-            options.rotateGesturesEnabled(false);
-            mapFragment = new MapFragment();
+            mapFragment = MapFragment.Companion.newInstance();
 
             // Then we add it using a FragmentTransaction.
             FragmentTransaction fragmentTransaction =
                     getSupportFragmentManager().beginTransaction();
             fragmentTransaction.add(android.R.id.content, mapFragment, MAP_FRAGMENT_TAG);
-            fragmentTransaction.commit();
+            fragmentTransaction.commitNow();
+            getSupportFragmentManager().executePendingTransactions();
         }
-        //mapFragment.getMapAsync(this);
+        mapFragment.getMapAsync(this);
     }
 
     @Override

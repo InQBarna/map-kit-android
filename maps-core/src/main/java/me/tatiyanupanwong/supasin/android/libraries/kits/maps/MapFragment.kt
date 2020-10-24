@@ -4,7 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.Nullable
+import androidx.annotation.UiThread
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import me.tatiyanupanwong.supasin.android.libraries.kits.maps.model.MapOptions
 
 /**
@@ -85,8 +88,27 @@ class MapFragment: Fragment() {
         view.onLowMemory()
     }
 
-    fun getMapAsync(callback: MapKit.OnMapReadyCallback) {
+    private fun getMapAsyncInternal(callback: MapKit.OnMapReadyCallback) {
         view.getMapAsync(callback)
+    }
+
+    @UiThread
+    fun getMapAsync(callback: MapKit.OnMapReadyCallback) {
+        if (::view.isInitialized) {
+            getMapAsyncInternal(callback)
+        } else {
+            requireFragmentManager().registerFragmentLifecycleCallbacks(
+                    object : FragmentManager.FragmentLifecycleCallbacks() {
+                        override fun onFragmentViewCreated(
+                                fragmentManager: FragmentManager,
+                                fragment: Fragment,
+                                view: View,
+                                @Nullable savedInstanceState: Bundle?) {
+                            fragmentManager.unregisterFragmentLifecycleCallbacks(this)
+                            getMapAsyncInternal(callback)
+                        }
+                    }, false)
+        }
     }
 
 
