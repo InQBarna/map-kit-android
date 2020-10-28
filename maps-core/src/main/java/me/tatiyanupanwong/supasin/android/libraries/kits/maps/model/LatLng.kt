@@ -15,12 +15,14 @@
  */
 package me.tatiyanupanwong.supasin.android.libraries.kits.maps.model
 
+import android.os.Parcelable
+
 /**
  * An immutable class representing a pair of latitude and longitude coordinates, stored as degrees.
  *
  * @since 1.0.0
  */
-interface LatLng {
+interface LatLng: Parcelable{
     /**
      * Latitude, in degrees. This value is in the range [-90, 90].
      */
