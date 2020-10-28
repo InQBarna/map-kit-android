@@ -49,6 +49,7 @@ internal class GoogleLatLng private constructor(private val mDelegate: LatLng) :
     }
 
     companion object {
+        @JvmStatic
         fun wrap(delegate: LatLng): me.tatiyanupanwong.supasin.android.libraries.kits.maps.model.LatLng {
             return GoogleLatLng(delegate)
         }
@@ -66,6 +67,7 @@ internal class GoogleLatLng private constructor(private val mDelegate: LatLng) :
             return list
         }
 
+        @JvmStatic
         fun unwrap(wrapped: me.tatiyanupanwong.supasin.android.libraries.kits.maps.model.LatLng): LatLng {
             return (wrapped as GoogleLatLng).mDelegate
         }
