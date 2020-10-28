@@ -25,7 +25,7 @@ androidExtensions {
 dependencies {
     api project(':maps-core')
 
-    implementation 'com.huawei.hms:maps:5.0.0.300'
+    implementation 'com.huawei.hms:maps:5.0.2.300'
     implementation "androidx.core:core-ktx:+"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
@@ -40,8 +40,8 @@ ext {
     POM_VERSION = '1.2.1'
 }
 
-apply from: rootProject.file("gradle/install.gradle")
-apply from: rootProject.file("gradle/bintray.gradle")
+//apply from: rootProject.file("gradle/install.gradle")
+//apply from: rootProject.file("gradle/bintray.gradle")
 repositories {
     mavenCentral()
 }
