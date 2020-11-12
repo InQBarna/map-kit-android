@@ -20,7 +20,7 @@ import kotlinx.android.parcel.Parcelize
 import java.util.*
 
 @Parcelize
-internal class GoogleLatLng private constructor(private val mDelegate: LatLng) : me.tatiyanupanwong.supasin.android.libraries.kits.maps.model.LatLng {
+internal class GoogleLatLng constructor(private val mDelegate: LatLng) : me.tatiyanupanwong.supasin.android.libraries.kits.maps.model.LatLng {
 
     constructor(latitude: Double, longitude: Double) : this(LatLng(latitude, longitude)) {}
 
